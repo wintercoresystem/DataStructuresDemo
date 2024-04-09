@@ -1,6 +1,6 @@
 package org.example;
 
-public class SimpleArrayList {
+public class SimpleArrayList <T> {
     int maxSize = 8; // Default array size
     int[] elements;
     int topElement = 0;
@@ -41,13 +41,16 @@ public class SimpleArrayList {
         }
     }
 
+    // Shift elements of the array to add or remove element in the middle
     private void shiftArray(int shiftFrom, boolean forward) {
         // If adding
         if (forward) {
             for (int i = topElement; i > shiftFrom - 1; i--) {
                 this.elements[i + 1] = this.elements[i];
             }
-        } else { // If removing
+        }
+        // If removing
+        else {
             for (int i = shiftFrom; i < topElement + 1; i++) {
                 this.elements[i] = this.elements[i + 1];
             }
@@ -56,7 +59,6 @@ public class SimpleArrayList {
 
     // Append element in the end
     public void add(int element) {
-        // TODO maybe make private?
         if (this.topElement + 1 >= this.maxSize) {
             extendArray();
         }
@@ -137,4 +139,5 @@ public class SimpleArrayList {
         this.checkIndex(index);
         return this.elements[index];
     }
+
 }
